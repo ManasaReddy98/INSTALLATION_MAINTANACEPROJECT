@@ -1,9 +1,9 @@
 import React from 'react'
 export const Constants = {
 
-    API_BASE_URL:"http://mapp.eficaa.com:8080/Eam_Instalation_v1.0",
-   
+    API_BASE_URL: "http://mapp.eficaa.com:8080/Eam_Instalation_v1.0",
 
+    API_BASE_URLS: "http://mapp.eficaa.com:8080/Eam_java_ms_V2.1_dev/",
 
     // API_BASE_URL : "http://mapp.eficaa.com:70/api/v1",  // Domain Service Replaced for URL 
     // API_BASE_URL_2 : "http://mapp.eficaa.com:70", 

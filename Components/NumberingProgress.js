@@ -48,9 +48,9 @@ const NumberingProgress = ({ navigation, route }) => {
     coloring,
     workStartedDateTime,
     LanguageOpt,
-   assettypename
+    assettypename
   } = route.params;
-  
+
   const [posts, setPosts] = useState([]);
   const [SOPsteps, setSOPSteps] = useState([]);
   const [stepClickedIndex, setStepClickedIndex] = useState(0);
@@ -656,13 +656,13 @@ const NumberingProgress = ({ navigation, route }) => {
                             >
                               <AntDesign name="leftcircle" color="#000" size={50} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {
+                            {/* <TouchableOpacity onPress={() => {
                               navigation.navigate('Signature', {
                                 AssetDetails: item, //Language.dtData,
                                 item: item, //Language.AssetDataTitleTextDT,
                                 color: '#E27D39',
                                 Language: Language,
-                               assettypename:assettypename,
+                                assettypename: assettypename,
                                 resourceId: resourceId,
                                 address: address,
                                 geoLocation: geoLocation,
@@ -676,10 +676,10 @@ const NumberingProgress = ({ navigation, route }) => {
                               });
                             }}
                               style={{ height: 50, backgroundColor: "#000000", borderRadius: 40, paddingHorizontal: 30, alignItems: 'center', justifyContent: 'center' }}>
-                              <Text style={{ fontWeight: '900', color:'#fff',fontSize: 16 }}>
+                              <Text style={{ fontWeight: '900', color: '#fff', fontSize: 16 }}>
                                 Skip
                               </Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             <TouchableOpacity
                               onPress={handleNext}
                             // disabled={stepClickedIndex === finalStepIndex - 1}
@@ -705,7 +705,7 @@ const NumberingProgress = ({ navigation, route }) => {
                     <AntDesign name="leftcircle" color="#000" size={50} />
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Signature', {
                       AssetDetails: item, //Language.dtData,
@@ -713,7 +713,7 @@ const NumberingProgress = ({ navigation, route }) => {
                       color: '#E27D39',
                       Language: Language,
                       resourceId: resourceId,
-                      assettypename:assettypename,
+                      assettypename: assettypename,
                       address: address,
                       geoLocation: geoLocation,
                       selectedAssetDetails: selectedAssetDetails,
@@ -729,7 +729,7 @@ const NumberingProgress = ({ navigation, route }) => {
                   <Text>
                     <AntDesign name="rightcircle" color="#000" size={50} />
                   </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             )}
           </View>

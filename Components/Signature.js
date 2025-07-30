@@ -83,6 +83,7 @@ function Signature({ navigation, route }) {
       getAssetTypeData(req_url, 'TMU');
     }
   }, [assettypename]);
+  
   const functioncalling = (item) => {
     if (assettypename == "METER") {
       const findindexitem = assetinfo.findIndex((asset) => asset.serialNumber === item)

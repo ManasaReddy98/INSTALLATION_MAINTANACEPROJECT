@@ -185,7 +185,7 @@ const ScanQrCode = ({ navigation, route }) => {
         })()}
         {/* <LoginQrAsset color={colorCode} item={item} Language={Language} selectedAssetDetails={selectedAssetDetails} assetTypeName={assetTypeName} /> */}
       </View>
-
+{/* 
       <View style={styles.fixToText}>
         <TouchableOpacity
           style={{ alignSelf: 'center' }}
@@ -216,7 +216,7 @@ const ScanQrCode = ({ navigation, route }) => {
             {LanguageOpt('Save')}
           </Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

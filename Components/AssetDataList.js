@@ -242,7 +242,6 @@ const AssetDataList = ({ route, navigation }) => {
           processType: 'Installation',
         });
       })
-
     }
     else {
       navigation.navigate('MapView', {
@@ -281,9 +280,11 @@ const AssetDataList = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View>
+        <Text style={{ color: '#18253f', marginLeft: 25, marginTop: 10 }}>Total Count:{notStartedList.length}</Text>
         <View
           style={{
-            height: 100,
+            height: 40,
+            marginTop: 10,
             width: '100%',
             flexDirection: 'row',
             alignItems: 'center',
@@ -292,6 +293,7 @@ const AssetDataList = ({ route, navigation }) => {
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
           }}>
+
           <TouchableOpacity onPress={() => onInprogressClicked()}>
             <View
               style={{
@@ -377,6 +379,7 @@ const AssetDataList = ({ route, navigation }) => {
                       marginLeft: 10,
                       marginBottom: 10,
                       fontWeight: 'bold',
+                      color: 'red'
                     }}>
                     {' '}
                     Ticket Status : Not Started

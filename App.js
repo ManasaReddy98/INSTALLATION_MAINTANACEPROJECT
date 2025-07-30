@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, Button, Image, TouchableOpacity} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { View, Text, Button, Image, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './Components/SplashScreen';
 import Login from './Components/Login';
 import BackgroundCarousel from './Components/BackgroundCarousel';
@@ -23,7 +23,7 @@ import DCU_GatewayDataList from './Components/DCU_GatewayDataList';
 import NumberingProgress from './Components/NumberingProgress';
 import IntegratedDashboard from './Components/IntegratedDashboard';
 
-import {MaterialIcons} from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 //import Helloreact from './EE_AppFiles/helloreact';
 import InstallationDashboard from './Components/InstallationDashboard';
 import Configurationsetting from './Components/configurationsettings';
@@ -59,6 +59,8 @@ import SiteSurveyDashboard from './SiteSurveyApp/components/jsfiles/SiteSurveyDa
 import ReAssignedIssues from './MaintananceApp/Components/Maintenance/ReAssignedIssues';
 import ClosedIssues from './MaintananceApp/Components/Maintenance/ClosedIssues';
 import MeterDetailsServiceIntegration from './Components/MeterDetailsServiceIntegration';
+import ServiceMapView from './Components/Servicemapview';
+import AssetsMapView from './Components/RemainingAssetmapview';
 
 // import MapSurvey from './SiteSurveyApp/components/jsfiles/MapSurvey';
 // import AssetDetails from './SiteSurveyApp/components/jsfiles/AssetDetails';
@@ -130,7 +132,7 @@ function App() {
         <Stack.Screen
           name="MapNavigation"
           component={MapNavigation}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Map_Navigation'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -149,7 +151,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -158,7 +160,7 @@ function App() {
         <Stack.Screen
           name="CameraView"
           component={CameraView}
-          options={({navigation}) => ({
+          options={({ navigation }) => ({
             title: 'Capture Image',
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -182,7 +184,7 @@ function App() {
         <Stack.Screen
           name="NumberingProgress"
           component={NumberingProgress}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Installation Progress'),
             // title: route.params.Language.InstallationHeadBarTitle,
             headerTintColor: '#ffffff',
@@ -202,7 +204,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -213,33 +215,33 @@ function App() {
           name="IntegratedDashboard"
           component={IntegratedDashboard}
           options={screenOptions}
-          // options={({navigation, route}) => ({
-          //   title: 'Asset Installation',
-          //   // title: route.params.Language.InstallationHeadBarTitle,
-          //   headerTintColor: '#ffffff',
-          //   headerStyle: {
-          //     backgroundColor: '#18253f',
-          //   },
-          //   headerRight: () => (
-          //     <TouchableOpacity
-          //       onPress={() =>
-          //         navigation.navigate('InstallationDashboard', {
-          //           Language: route.params.Language,
-          //         })
-          //       }>
-          //       <Image
-          //         source={require('./images/home_icon.png')}
-          //         style={{height: 20, width: 20}}
-          //       />
-          //     </TouchableOpacity>
-          //   ),
-          // })}
+        // options={({navigation, route}) => ({
+        //   title: 'Asset Installation',
+        //   // title: route.params.Language.InstallationHeadBarTitle,
+        //   headerTintColor: '#ffffff',
+        //   headerStyle: {
+        //     backgroundColor: '#18253f',
+        //   },
+        //   headerRight: () => (
+        //     <TouchableOpacity
+        //       onPress={() =>
+        //         navigation.navigate('InstallationDashboard', {
+        //           Language: route.params.Language,
+        //         })
+        //       }>
+        //       <Image
+        //         source={require('./images/home_icon.png')}
+        //         style={{height: 20, width: 20}}
+        //       />
+        //     </TouchableOpacity>
+        //   ),
+        // })}
         />
 
         <Stack.Screen
           name="DCU_GatewayDataList"
           component={DCU_GatewayDataList}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Installation_Process'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -258,7 +260,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -268,7 +270,7 @@ function App() {
         <Stack.Screen
           name="TicketAcceptReject"
           component={TicketAcceptReject}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('TicketReject'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -287,7 +289,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -297,7 +299,7 @@ function App() {
         <Stack.Screen
           name="DrawPolygon"
           component={DrawPolygon}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.Language.InstallationHeadBarTitle,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -316,7 +318,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -326,7 +328,7 @@ function App() {
         <Stack.Screen
           name="AssetInstallationProgressView"
           component={AssetInstallationProgressView}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.Language.InstallationHeadBarTitle,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -345,7 +347,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -355,7 +357,7 @@ function App() {
         <Stack.Screen
           name="InstallationProcessMaking"
           component={InstallationProcessMaking}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.Language.InstallationHeadBarTitle,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -374,7 +376,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -384,7 +386,7 @@ function App() {
         <Stack.Screen
           name="AssetInstallationProgress"
           component={AssetInstallationProgress}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.Language.InstallationHeadBarTitle,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -403,7 +405,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -412,7 +414,7 @@ function App() {
         <Stack.Screen
           name="ScanQrCode"
           component={ScanQrCode}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Asset_Info'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -431,7 +433,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -440,7 +442,7 @@ function App() {
         <Stack.Screen
           name="MapView"
           component={MapView}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Map_View'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -459,7 +461,36 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+        <Stack.Screen
+          name="AssetsMapView"
+          component={AssetsMapView}
+          options={({ navigation, route }) => ({
+            title: route.params.LanguageOpt('Assets Map View '),
+            headerTintColor: '#ffffff',
+            headerStyle: {
+              backgroundColor: '#18253f',
+            },
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('MainAppDashboard', {
+                    Language: route.params.Language,
+                    resourceName: route.params.resourceName,
+                    LanguageOpt: route.params.LanguageOpt,
+                    resourceId: route.params.resourceId,
+                    resourceMobileNumber: route.params.resourceMobileNumber,
+                  })
+                }>
+                <Image
+                  source={require('./images/home_icon.png')}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -467,10 +498,39 @@ function App() {
         />
 
 
-         <Stack.Screen
+
+        <Stack.Screen
+          name="ServiceMapView"
+          component={ServiceMapView}
+          options={({ navigation, route }) => ({
+            title: route.params.LanguageOpt('Service Map View'),
+            headerTintColor: '#ffffff',
+            headerStyle: {
+              backgroundColor: '#18253f',
+            },
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('MainAppDashboard', {
+                    Language: route.params.Language,
+                    resourceName: route.params.resourceName,
+                    LanguageOpt: route.params.LanguageOpt,
+                    resourceId: route.params.resourceId,
+                    resourceMobileNumber: route.params.resourceMobileNumber,
+                  })
+                }>
+                <Image
+                  source={require('./images/home_icon.png')}
+                  style={{ height: 20, width: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
           name="MeterDetailsServiceIntegration"
           component={MeterDetailsServiceIntegration}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Map_View'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -489,7 +549,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -514,7 +574,7 @@ function App() {
         <Stack.Screen
           name="Progress"
           component={Progress}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.Language.captureprogressHeadBarTitle,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -533,7 +593,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -542,7 +602,7 @@ function App() {
         <Stack.Screen
           name="Signature"
           component={Signature}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Capture_Signature'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -561,7 +621,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -621,14 +681,14 @@ function App() {
         <Stack.Screen
           name="AssetDataList"
           component={AssetDataList}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.ti,
             headerTintColor: '#ffffff',
             headerStyle: {
               backgroundColor: '#18253f',
             },
             headerRight: () => (
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 {/* <Text style={{color: '#fff'}}>
                   HI , {route.params.resourceName}
                 </Text> */}
@@ -644,7 +704,7 @@ function App() {
                   }>
                   <Image
                     source={require('./images/home_icon.png')}
-                    style={{height: 20, width: 20}}
+                    style={{ height: 20, width: 20 }}
                   />
                 </TouchableOpacity>
               </View>
@@ -654,7 +714,7 @@ function App() {
         <Stack.Screen
           name="RegisterUser"
           component={RegisterUser}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.ti,
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -669,7 +729,7 @@ function App() {
         <Stack.Screen
           name="ChangePassword"
           component={ChangePassword}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Change_Password'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -688,7 +748,7 @@ function App() {
         <Stack.Screen
           name="MaintananceAssetDataList"
           component={MaintananceAssetDataList}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             // title: route.params.ti,
             title: route.params.LanguageOpt('Issues'),
             // title: t('Issues'),
@@ -709,7 +769,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -719,7 +779,7 @@ function App() {
         <Stack.Screen
           name="Complaints"
           component={Complaints}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Complaints'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -738,7 +798,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -748,7 +808,7 @@ function App() {
         <Stack.Screen
           name="Resolved"
           component={Resolved}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: 'Resolved',
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -767,7 +827,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -777,7 +837,7 @@ function App() {
         <Stack.Screen
           name="ReAssignedIssues"
           component={ReAssignedIssues}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: 'ReAssigned',
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -796,7 +856,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -805,7 +865,7 @@ function App() {
         <Stack.Screen
           name="ClosedIssues"
           component={ClosedIssues}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: '',
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -824,7 +884,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -833,7 +893,7 @@ function App() {
         <Stack.Screen
           name="MapViewlatlong"
           component={MapViewlatlong}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Maintenance_View'),
             // title: t('Maintenance_View'),
             headerTintColor: '#ffffff',
@@ -853,7 +913,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -863,7 +923,7 @@ function App() {
         <Stack.Screen
           name="StepperLogic"
           component={StepperLogic}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Maintenance_Process'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -882,7 +942,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),
@@ -892,7 +952,7 @@ function App() {
         <Stack.Screen
           name="MaintananceCaptureSignature"
           component={MaintananceCaptureSignature}
-          options={({navigation, route}) => ({
+          options={({ navigation, route }) => ({
             title: route.params.LanguageOpt('Capture_Signature'),
             headerTintColor: '#ffffff',
             headerStyle: {
@@ -911,7 +971,7 @@ function App() {
                 }>
                 <Image
                   source={require('./images/home_icon.png')}
-                  style={{height: 20, width: 20}}
+                  style={{ height: 20, width: 20 }}
                 />
               </TouchableOpacity>
             ),

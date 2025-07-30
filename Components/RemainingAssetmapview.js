@@ -22,7 +22,7 @@ import { LogMessages } from '../LogManager/LogMessages';
 import { format } from 'date-fns';
 //import moment from 'moment';
 
-const MapViewAssigned = ({ navigation, route }) => {
+const AssetsMapView = ({ navigation, route }) => {
   const mapRef = useRef(null);
   const checkNetworkState = new CheckNetworkConnectivity();
   const todoService = new TODOService();
@@ -251,50 +251,7 @@ const MapViewAssigned = ({ navigation, route }) => {
               })()}
             </View>
           </View>
-          <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-            <TouchableOpacity onPress={() => {
-              navigation.navigate('ScanQrCode', {
-                AssetDetails: item, //Language.dtData,
-                item: item, //Language.AssetDataTitleTextDT,
-                color: '#E27D39',
-                Language: Language,
-                resourceId: resourceId,
-                address: LocationFromDb,
-                assettypename: "METER",
-                geoLocation: specificLocation,
-                selectedAssetDetails: assetDetailsByAssetId,
-                coloring: coloring,
-                Language: Language,
-                AssetDetails: AssetDetails,
-                item: item,
-                LanguageOpt: LanguageOpt,
-                Location: LocationFromDb,
-                selectedAssetTypeName: selectedAssetTypeName,
-                installationID: item.installationId,
-                workStartedDateTime: workStartedDateTime,
-              })
-            }}
-              style={{ marginRight: 20 }}>
-              <Image source={require('../images/t_info.png')} style={{ width: 30, height: 30 }} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('AssetsMapView', {
-              coloring: coloring,
-              color: color,
-              Language: Language,
-              AssetDetails: AssetDetails,
-              LanguageOpt: LanguageOpt,
-              item: item,
-              resourceId: resourceId,
-              selectedAssetTypeName: selectedAssetTypeName,
-              LanguageOpt: LanguageOpt,
-              processType: processType,
-            })} style={{ marginRight: 20 }}>
-              <Image source={require('../images/location_48.png')} style={{ width: 30, height: 30 }} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('NumberingProgress', { LanguageOpt: LanguageOpt, geoLocation: specificLocation, selectedAssetDetails: assetDetailsByAssetId, assetDetails: item, coloring: coloring })} style={{ marginRight: 20 }}>
-              <Image source={require('../images/view_sop.png')} style={{ width: 30, height: 30 }} />
-            </TouchableOpacity>
-          </View>
+         
 
           {/* <View
             style={{
@@ -468,7 +425,7 @@ const MapViewAssigned = ({ navigation, route }) => {
     </View>
   );
 };
-export default MapViewAssigned;
+export default AssetsMapView;
 const styles = coloring =>
   StyleSheet.create({
     MainContainer: {
@@ -614,12 +571,4 @@ const styles = coloring =>
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
   });
-// const styles = coloring =>
-//   StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       justifyContent: 'center',
-//       marginHorizontal: 16,
-//     },
 
-//   });

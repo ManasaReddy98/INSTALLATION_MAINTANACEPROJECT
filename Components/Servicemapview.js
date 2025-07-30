@@ -20,8 +20,6 @@ import CheckNetworkConnectivity from '../ReusableFunctions/CheckNetworkConnectiv
 import TODOService from '../ReUsableMethods/TODOService';
 import { LogMessages } from '../LogManager/LogMessages';
 import { format } from 'date-fns';
-import CustomSelectDropdown from '../ReUsableMethods/SelectDropdown';
-import { ScrollView } from 'react-native-gesture-handler';
 //import moment from 'moment';
 
 const MeterDetailsServiceIntegration = ({ navigation, route }) => {
@@ -117,39 +115,8 @@ const MeterDetailsServiceIntegration = ({ navigation, route }) => {
     //   fetchData();
     // }, [item]);
     const [loading, setLoading] = useState(true);
-    const [dropdowndata, setDropdowndata] = useState([])
-    const [meterdata, setMeterdata] = useState([])
-    const getAssetTypeData = async (req_url) => {
-        try {
-            const token = '';
-            const { data, status } = await todoService.getDataFromApi(req_url, token);
 
-            // Efficiently map and extract required serial numbers
-            const serials = data
-                .map((item) => {
-                    return item.serialNumber;
-                })
-                .filter(Boolean); // Removes null/undefined values
-            setDropdowndata(serials);
-            setMeterdata(data)
-        } catch (error) {
-            console.error('Error fetching asset data:', error);
-        }
-    };
 
-    useEffect(() => {
-        const req_url = 'http://mapp.eficaa.com:8080/Eam_java_ms_V2.1_dev/MTFMeterdata/MTFMeterdetails';
-        getAssetTypeData(req_url);
-    }, []);
-    const [viewdata, setViewdata] = useState({})
-    const [mfIduseState, setMfIduseState] = useState("")
-    const functioncalling = (serialNumber) => {
-        const findindex = meterdata.findIndex(asset => asset.serialNumber == serialNumber);
-        const returndata = meterdata[findindex]
-        setViewdata(returndata)
-        // console.warn(returndata.mfId)
-        setMfIduseState(returndata.mfId)
-    };
 
     const fetchData = async () => {
         const url =
@@ -180,123 +147,16 @@ const MeterDetailsServiceIntegration = ({ navigation, route }) => {
 
     let str = 'sailaja';
     let str1 = 'cheela';
-    const [formdata, setFormData] = useState({})
-    const [fields, setFields] = useState([
-        {
-            key: 'COMMUNICATIONTYPE',
-            placeholdername: LanguageOpt('Select communication type'),
-            type: 'dropdown',
-            // commtypedisable: true,
-            data: ["GSM", "WIFI", "RF"],
-            enable: true
-        },
-        {
-            key: 'GSMNUMBER',
-            placeholdername: LanguageOpt('Select  GSM NUMBER'),
-            type: 'dropdown',
-            data: [],
-            enable: false
-        },
-        {
-            key: 'GSMNUMBERS',
-            placeholdername: LanguageOpt('Enter SIM  GSM NUMBER'),
-            type: 'textinput',
-            maxLength: 10,
-            keyboardType: 'numeric',
-            enable: false
-        },
-        {
-            key: 'UNIQUESIMNUMBER',
-            placeholdername: LanguageOpt('Enter  UNIQUE SIM NUMBER'),
-            type: 'textinput',
-            maxLength: 16,
-            enable: false
-        },
-        {
-            key: 'SIMIP',
-            placeholdername: LanguageOpt('Enter Sim Ip'),
-            type: 'textinput',
-            enable: false,
-            maxLength: 16
-        },
-        {
-            key: 'MODEMNUMBER',
-            placeholdername: LanguageOpt('Enter Modem Imei Number'),
-            type: 'textinput',
-            keyboardType: 'numeric',
-            enable: false,
-            maxLength: 10
-        },
-        {
-            key: 'DCUBOXNUM',
-            placeholdername: LanguageOpt('Enter DCU Box Number'),
-            type: 'textinput',
-            maxLength: 16,
-            enable: false
-        },
-    ]);
-
-
-    useEffect(() => {
-        const initialvalues = {}
-        fields.forEach((field) => {
-            initialvalues[field.key] = ""
-        })
-        setFormData(initialvalues)
-    }, [])
-
-
-    const handleOnchange = (field, value) => {
-        if (field == "COMMUNICATIONTYPE") {
-            setFields(prevFields =>
-                prevFields.map(f => {
-                    switch (f.key) {
-                        case 'GSMNUMBER':
-                            return { ...f, enable: value === 'GSM' }
-                        case 'MODEMNUMBER':
-                            return { ...f, enable: value === "WIFI" }
-                        default:
-                            return f
-                    }
-                })
-            )
-        }
-    }
-    const [manufacurename, setManufacurename] = useState("")
-    const getmanufacturename = async (req_url) => {
-        try {
-            const token = '';
-            const { data, status } = await todoService.getDataFromApi(req_url, token);
-            setManufacurename(data.manufacturerName)
-        } catch (error) {
-            console.error('Error fetching asset data:', error);
-        }
-    };
-    useEffect(() => {
-        if (mfIduseState) {
-            console.log(mfIduseState)
-            if (mfIduseState == 0) {
-                setManufacurename("Not Available");
-                return;
-            }
-            const req_url = `http://mapp.eficaa.com:8080/Eam_java_ms_V2.1_dev/Manufacturerdata/${mfIduseState}`;
-            getmanufacturename(req_url);
-        }
-    }, [mfIduseState]);
     return (
         <View style={{ backgroundColor: '#fff', flex: 1 }}>
             <View
                 style={{
                     // height: screenHeight / 6 + 16,
                     height: 100,
-                    padding: 20,
-                    width: '96%',
-                    // borderRadius: 10,
-                    // borderWidth: 2,
-                    backgroundColor: 'white',
                     marginTop: 10,
-                    borderRadius: 20,
-                    elevation: 5,
+                    width: '96%',
+                    borderRadius: 10,
+                    borderWidth: 2,
                     // backgroundColor: coloring,
                     justifyContent: 'center',
                     alignSelf: 'center',
@@ -304,24 +164,17 @@ const MeterDetailsServiceIntegration = ({ navigation, route }) => {
                 }}>
                 {/* <View><Text style={{fontWeight: 'bold', color: '#fff',marginLeft:25}}>Asset Details</Text></View> */}
 
-                <View style={{
-                    flexDirection: 'row',
-                    //  backgroundColor:'red'
-                }}>
+                <View style={{ marginLeft: 25, flexDirection: 'row' }}>
                     <View style={{ flexDirection: 'column', flex: 1.8 }}>
                         <Text style={{ fontWeight: 'bold', color: '#18253f', }}>
-                            Service No: {item.serviceNo}
+                            {item.serviceNo}
                         </Text>
-                        <Text style={{ fontWeight: 'bold', color: '#18253f', }}>
-                            Consumer Name: {item.consumerName}
-                        </Text>
-
-                        {/* <Text style={{ marginTop: 5, color: '#18253f', }}>
+                        <Text style={{ marginTop: 5, color: '#18253f', }}>
                             {LanguageOpt('Location')} :{LocationFromDb}
-                        </Text> */}
-                        {/* <Text style={{ marginTop: 5, color: '#18253f', }}>
+                        </Text>
+                        <Text style={{ marginTop: 5, color: '#18253f', }}>
                             {LanguageOpt('Lat_Long')} :{latitude},{longitude}
-                        </Text> */}
+                        </Text>
                         <View>
                             {(() => {
                                 if (!ticketContent || !ticketDescription) {
@@ -348,101 +201,187 @@ const MeterDetailsServiceIntegration = ({ navigation, route }) => {
                             })()}
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                        <TouchableOpacity onPress={() => {
-                            navigation.navigate('ScanQrCode', {
-                                AssetDetails: item, //Language.dtData,
-                                item: item, //Language.AssetDataTitleTextDT,
-                                color: '#E27D39',
-                                Language: Language,
-                                resourceId: resourceId,
-                                address: LocationFromDb,
-                                assettypename: "METER",
-                                geoLocation: specificLocation,
-                                selectedAssetDetails: assetDetailsByAssetId,
-                                coloring: coloring,
-                                Language: Language,
-                                AssetDetails: AssetDetails,
-                                item: item,
-                                LanguageOpt: LanguageOpt,
-                                Location: LocationFromDb,
-                                selectedAssetTypeName: selectedAssetTypeName,
-                                installationID: item.installationId,
-                                workStartedDateTime: workStartedDateTime,
-                            })
-                        }}
-                            style={{ marginRight: 20 }}>
-                            <Image source={require('../images/t_info.png')} style={{ width: 30, height: 30 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('ServiceMapView', {
-                            coloring: coloring,
-                            color: color,
-                            Language: Language,
-                            AssetDetails: AssetDetails,
-                            LanguageOpt: LanguageOpt,
-                            item: item,
-                            resourceId: resourceId,
-                            selectedAssetTypeName: selectedAssetTypeName,
-                            LanguageOpt: LanguageOpt,
-                            processType: processType,
-                        })} style={{ marginRight: 20 }}>
-                            <Image source={require('../images/location_48.png')} style={{ width: 30, height: 30 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('NumberingProgress', { LanguageOpt: LanguageOpt, geoLocation: specificLocation, selectedAssetDetails: assetDetailsByAssetId, assetDetails: item, coloring: coloring })} style={{ marginRight: 20 }}>
-                            <Image source={require('../images/view_sop.png')} style={{ width: 30, height: 30 }} />
-                        </TouchableOpacity>
-                    </View>
+                   
+
+                    {/* <View
+            style={{
+              flexDirection: 'column',
+              backgroundColor: 'white',
+              width: 60,
+              height: 60,
+              borderRadius: 60,
+              marginRight: 20,
+            }}>
+            <Image
+              style={{
+                width: 40,
+                height: 40,
+                alignSelf: 'center',
+                marginTop: 10,
+              }}
+              source={{uri: assetImageFrmDB}}
+            />
+          </View> */}
                 </View>
             </View>
-            <ScrollView>
-                <View style={{
-                    width: '96%', alignSelf: 'center', paddingLeft: 20, backgroundColor: 'white',
+
+            <View
+                style={{
+                    marginLeft: 10,
+                    height: 40,
+                    flexDirection: 'column',
                     marginTop: 10,
-                    borderRadius: 20,
-                    elevation: 5, paddingVertical: 10,
-                    marginBottom: 10
                 }}>
-                    <Text style={{ color: '#000' }}>USN:{item.uniqueServiceNo}</Text>
-                    <Text style={{ color: '#000' }}>SerialNumber:{item.serialNumber}</Text>
+                {(() => {
+                    if (
+                        typeof specificLocation.latitude === 'number' &&
+                        specificLocation.latitude <= 90 &&
+                        specificLocation.latitude >= -90
+                    ) {
+                        return (
+                            <View>
+                                <Text>
+                                    {' '}
+                                    {LanguageOpt('Location_Status_From_DB')} :{' '}
+                                    {specificLocation.latitude},{specificLocation.longitude}{' '}
+                                </Text>
 
-                    <Text style={{ color: '#000' }}>Address:{item.address}</Text>
-                    <Text style={{ color: '#000' }}>Latitude,Longitude:{item.latitude}{item.longitude}</Text>
+                                {/* <MapView
+                    style={styles(coloring).mapStyle}
+                    showsUserLocation={false}
+                    zoomEnabled={true}
+                    zoomControlEnabled={true}
+                    initialRegion={{
+                      latitude: 17.4248742,
+                      longitude: 78.4583377,
+                      latitudeDelta: 0.0922,
+                      longitudeDelta: 0.0421,
+                    }}>
+                    <Marker
+                      coordinate={specificLocation}
+                      title={item.assetId}
+                      description={Location}>
+                      <Image
+                        source={{uri: assetImage}} // Replace with your image path
+                        style={{width: 35,height: 35,borderRadius:35}} // Adjust width and height as needed
+                      />
+                    </Marker>           
+                  </MapView> */}
+                            </View>
+                        );
+                    } else {
+                        return (
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={{ color: coloring }}>
+                                    {' '}
+                                    Location Data From DB : {specificLocation.latitude},
+                                    {specificLocation.longitude}{' '}
+                                </Text>
+                                <Text> Location Marker not found </Text>
+                                <Text> check Lat ,Long values from DB </Text>
+                            </View>
+                        );
+                    }
+                })()}
+            </View>
 
-                    <Text style={{ color: '#000' }}>Old Meter Serial Number:{item.oldMeterNo}</Text>
-                    <Text style={{ color: '#000' }}>Old Meter Reading:{item.odMeterReading}</Text>
-                </View>
-                <View style={{ width: '96%', alignSelf: 'center' }}>
-                    <CustomSelectDropdown data={dropdowndata} onItemSelected={(item) => functioncalling(item)} placeholder="Select Meter Serial Number" />
-                </View>
+            <View style={{ marginTop: 20, height: '60%', borderRadius: 30 }}>
+                <View style={styles(coloring).MainContainer}>
+                    {(() => {
+                        if (
+                            typeof specificLocation.latitude === 'number' &&
+                            specificLocation.latitude <= 90 &&
+                            specificLocation.latitude >= -90
+                        ) {
+                            return (
+                                <MapView
+                                    style={styles(coloring).mapStyle}
+                                    ref={mapRef}
+                                    onMapReady={() => {
+                                        if (
+                                            mapRef.current &&
+                                            specificLocation.latitude &&
+                                            specificLocation.longitude
+                                        ) {
+                                            mapRef.current.animateToRegion(specificLocation, 1000);
+                                        }
+                                    }}
+                                    initialRegion={{
+                                        latitude: 17.394822,
+                                        longitude: 78.424593,
+                                        latitudeDelta: 6.7952,
+                                        longitudeDelta: 79.9008,
+                                    }}
+                                >
+                                    <Marker
+                                        coordinate={specificLocation}
+                                        title={item.serviceNo}
+                                        pinColor={coloring}
+                                    />
+                                </MapView>
 
-
-                {Object.keys(viewdata).length > 0 ? (
-                    <View style={{ width: '96%', alignSelf: 'center', elevation: 5, backgroundColor: 'white', marginTop: 10, backgroundColor: '#fff', marginBottom: 10, levation: 2, padding: 10, borderRadius: 20 }}>
-                        <Text style={{ color: '#000' }}>Meter Serial: {viewdata.serialNumber}</Text>
-                        <Text style={{ color: '#000' }}>Location: {viewdata.location}</Text>
-                        <Text style={{ color: '#000' }}>Location: {viewdata.assetId}</Text>
-                        {/* <Text style={{ color: '#000' }}>mfId: {viewdata.mfId}</Text> */}
-                        <Text style={{ color: '#000' }}>Manufacture Name: {manufacurename}</Text>                        
-                    </View>
-                ) : null}
-                <View>
-                    <View style={{ marginVertical: 10, width: '96%', alignSelf: 'center' }}>
-                        {
-                            fields.map((field, index) => {
-                                if (field.type === 'dropdown' && field.enable == true) {
-                                    return (
-                                        <View key={index} style={{ marginBottom: 10 }}>
-                                            <CustomSelectDropdown onItemSelected={item => handleOnchange(field.key, item)} data={field.data} key={index} placeholder={formdata[field.key] || field.placeholdername}
-                                            />
-                                        </View>
-
-                                    )
-                                }
-                            })
+                            );
+                        } else {
                         }
-                    </View>
+                    })()}
                 </View>
-            </ScrollView>
+            </View>
+
+            {/*This is Skip Navigation & Go to QR code page */}
+            <View style={styles(coloring).fixToText}>
+                {/* <TouchableOpacity
+          style={styles(coloring).touchable}
+          onPress={() =>
+            navigation.navigate('ScanQrCode', {
+              AssetDetails: item, //Language.dtData,
+              item: item, //Language.AssetDataTitleTextDT,
+              color: '#E27D39',
+              Language: Language,
+              resourceId: resourceId,
+              address: Location,
+              geoLocation: specificLocation,
+              selectedAssetDetails: assetDetailsByAssetId,
+              coloring: coloring,
+              Language: Language,
+              AssetDetails: AssetDetails,
+              item: item,
+              Location: Location,
+              selectedAssetTypeName: selectedAssetTypeName,
+              installationID: item.installationId,
+              workStartedDateTime: workStartedDateTime,
+            })
+          }>
+          <Text style={{color: '#fff'}}>{Language.SkipButtonText}</Text>
+        </TouchableOpacity> */}
+
+                {/* Goto Navigation Page Button */}
+                {/* <TouchableOpacity
+                    style={styles(coloring).touchable}
+                    onPress={() =>
+                        navigation.navigate('ScanQrCode', {
+                            AssetDetails: item, //Language.dtData,
+                            item: item, //Language.AssetDataTitleTextDT,
+                            color: '#E27D39',
+                            Language: Language,
+                            resourceId: resourceId,
+                            address: LocationFromDb,
+                            assettypename: "METER",
+                            geoLocation: specificLocation,
+                            selectedAssetDetails: assetDetailsByAssetId,
+                            coloring: coloring,
+                            Language: Language,
+                            AssetDetails: AssetDetails,
+                            item: item,
+                            LanguageOpt: LanguageOpt,
+                            Location: LocationFromDb,
+                            selectedAssetTypeName: selectedAssetTypeName,
+                            installationID: item.installationId,
+                            workStartedDateTime: workStartedDateTime,
+                        })
+                    }>
+                    <Text style={{ color: '#fff' }}>{LanguageOpt('Navigate_To')}</Text>
+                </TouchableOpacity> */}
+            </View>
         </View>
     );
 };

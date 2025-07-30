@@ -209,13 +209,11 @@ function InstallationDashboard({
         item.installationDataList.map(installation => installation.assetId),
       );
       setAssetIds(assetIds);
-
       const tmuList = [];
       const dtrList = [];
       const mtrList = [];
       const dcuList = [];
       const routerList = [];
-
       posts.forEach(item => {
         item.installationDataList.forEach(installation => {
           if (installation.assetId.includes('TMU')) {
@@ -231,6 +229,7 @@ function InstallationDashboard({
           }
         });
       });
+
       setTMUData(tmuList);
       setDtData(dtrList);
       setMeterData(mtrList);
